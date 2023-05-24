@@ -55,37 +55,37 @@ spec:
     - name: gitrevision
     - name: gitrepositoryurl
   resourcetemplates:
-  - apiVersion: tekton.dev/v1beta1
-    kind: PipelineRun
-    metadata:
-      generateName: caj-fare-pipeline-run-
-    spec:
-      pipelineRef:
-        name: caj-fare-pipeline
-      params:
-      - name: deployment-name
-        value: caj-fare
-      - name: git-url
-        value: $(tt.params.gitrepositoryurl)
-      - name: git-revision
-        value: $(tt.params.gitrevision)
-      - name: image
-        value: image-registry.openshift-image-registry.svc:5000/caj-fare/caj-fare
-      - name: dockerfile
-        value: Dockerfile-openjdk
-      - name: manifest-git-url
-        value: git@github.com:CCChou/caj-fare-deploy.git
-      - name: manifest-git-revision
-        value: main
-      - name: manifest-path
-        value: gitops/deployment.yaml
-      workspaces:
-      - name: app-source
-        persistentVolumeClaim:
-          claimName: caj-fare-pipeline-pvc
-      - name: app-manifest
-        persistentVolumeClaim:
-          claimName: manifest-pvc
-      - name: ssh-creds
-        secret:
-          secretName: ssh-credentials
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: caj-fare-pipeline-run-
+      spec:
+        pipelineRef:
+          name: caj-fare-pipeline
+        params:
+          - name: deployment-name
+            value: caj-fare
+          - name: git-url
+            value: $(tt.params.gitrepositoryurl)
+          - name: git-revision
+            value: $(tt.params.gitrevision)
+          - name: image
+            value: image-registry.openshift-image-registry.svc:5000/user11/caj-fare
+          - name: dockerfile
+            value: Dockerfile-openjdk
+          - name: manifest-git-url
+            value: git@github.com:CCChou/caj-fare-deploy.git
+          - name: manifest-git-revision
+            value: main
+          - name: manifest-path
+            value: gitops/deployment.yaml
+        workspaces:
+          - name: app-source
+            persistentVolumeClaim:
+              claimName: caj-fare-pipeline-pvc
+          - name: app-manifest
+            persistentVolumeClaim:
+              claimName: manifest-pvc
+          - name: ssh-creds
+            secret:
+              secretName: ssh-credentials
