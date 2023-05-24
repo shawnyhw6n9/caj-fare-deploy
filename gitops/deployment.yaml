@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: caj-fare
-          image: "image-registry.openshift-image-registry.svc:5000/user11/caj-fare"
+          image: "image-registry.openshift-image-registry.svc:5000/user11/caj-fare:2023-05-24-10-22-04"
           ports:
             - containerPort: 8080
               protocol: TCP
